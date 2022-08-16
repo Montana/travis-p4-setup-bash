@@ -1,10 +1,14 @@
 #!/bin/bash
 
-# Fetch P4 Helix Core CLI 
+# Fetch P4 Helix Core CLI
 wget -qO - https://package.perforce.com/perforce.pubkey | sudo apt-key add -
-mkdir /etc/apt/sources.list.d/perforce.list < deb http://package.perforce.com/apt/ubuntu focal release
+
+cat <<EOF | sudo tee /etc/apt/sources.list.d/perforce.list
+deb http://package.perforce.com/apt/ubuntu focal release
+EOF
+
 sudo apt-get update
-sudo apt-get install helix-p4d
+echo "yes" | sudo apt-get install helix-p4d
 
 # Create folders p4repo & p4repo/db 
 mkdir ~/p4repo
@@ -29,5 +33,8 @@ echo "Set a password for your account."
 p4 passwd 
 
 # Input credentials for p4config.txt 
-echo "Opening up p4config.txt with Vim"
-sudo vim ~/p4/p4config.txt 
+echo "P4PORT=localhost:16666
+P4USER=testuser
+P4CHARSET=utf8
+P4CLIENT=testuserspace001" 
+>> ~/p4/p4config.txt
