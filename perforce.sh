@@ -27,3 +27,7 @@ export P4CONFIG=~/p4/p4config.txt
 p4 info
 echo "Set a password for your account."
 p4 passwd 
+
+# Input credentials for p4config.txt 
+echo "Opening up p4config.txt with Vim"
+sudo vim ~/p4/p4config.txt 
