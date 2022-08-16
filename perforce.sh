@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Fetch P4 Helix Core CLI 
-wget -qO - https://package.perforce.com/perforce.pubkey | sudo gpg --dearmor -o /usr/share/keyrings/perforce-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/perforce-archive-keyring.gpg] http://package.perforce.com/apt/ubuntu focal release" | sudo tee /etc/apt/sources.list.d/perforce.list
-sudo apt update
-sudo apt install helix-cli
+wget -qO - https://package.perforce.com/perforce.pubkey | sudo apt-key add -
+mkdir /etc/apt/sources.list.d/perforce.list < deb http://package.perforce.com/apt/ubuntu focal release
+sudo apt-get update
+sudo apt-get install helix-p4d
 
 # Create folders p4repo & p4repo/db 
 mkdir ~/p4repo
